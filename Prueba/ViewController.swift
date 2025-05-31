@@ -68,7 +68,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(viewXib))
         
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -130,5 +131,11 @@ class ViewController: UIViewController {
     func collectionView() {
         self.present(CollectionView(), animated: true)
     }
+    
+    @objc
+    private func viewXib() {
+        self.navigationController?.pushViewController(TableView(), animated: true)
+    }
+
 }
 
