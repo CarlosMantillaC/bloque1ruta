@@ -66,10 +66,29 @@ class ViewController: UIViewController {
         return button2
     }()
     
+    private lazy var closureButton3: UIButton = {
+        var configuration = UIButton.Configuration.bordered()
+        configuration.title = "ir al XiB"
+        configuration.titleAlignment = .center
+        configuration.buttonSize = .large
+
+        
+        let button3 = UIButton(type: .system)
+        button3.configuration = configuration
+        button3.addTarget(self, action: #selector(viewXib), for: .touchUpInside)
+        button3.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button3
+    }()
+    
+    
+    
+    
     override func viewDidLoad() {
+        print("1")
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(viewXib))
+       self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(viewXib))
         
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +99,7 @@ class ViewController: UIViewController {
         scrollView.addSubview(contentView)
         
         
-        [closureLabel1, closureImage1, closureImage2, closureButton1, closureButton2].forEach(contentView.addSubview)
+        [closureLabel1, closureImage1, closureImage2, closureButton1, closureButton2, closureButton3].forEach(contentView.addSubview)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -119,8 +138,10 @@ class ViewController: UIViewController {
 
             closureButton2.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             closureButton2.topAnchor.constraint(equalTo: closureButton1.bottomAnchor, constant: 20),
-            closureButton2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
 
+            closureButton3.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            closureButton3.topAnchor.constraint(equalTo: closureButton2.bottomAnchor, constant: 20),
+            closureButton3.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
     }
 
@@ -132,10 +153,33 @@ class ViewController: UIViewController {
         self.present(CollectionView(), animated: true)
     }
     
-    @objc
+   @objc
     private func viewXib() {
-        self.navigationController?.pushViewController(TableView(), animated: true)
+        self.navigationController?.pushViewController(ViewControllerXib(), animated: true)
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("2")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        print("3")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        print("4")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("5")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("6")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("7")
+    }
 }
 
