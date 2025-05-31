@@ -81,6 +81,23 @@ class ViewController: UIViewController {
         return button3
     }()
     
+    private lazy var closureButton4: UIButton = {
+        var configuration = UIButton.Configuration.bordered()
+        configuration.title = "ir al XiB"
+        configuration.titleAlignment = .center
+        configuration.buttonSize = .large
+        
+        
+        let button = UIButton(type: .system, primaryAction: UIAction(handler: {
+            _ in self.navegarXibModal()
+            
+        }))
+        button.configuration = configuration
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     
     
     
@@ -99,7 +116,7 @@ class ViewController: UIViewController {
         scrollView.addSubview(contentView)
         
         
-        [closureLabel1, closureImage1, closureImage2, closureButton1, closureButton2, closureButton3].forEach(contentView.addSubview)
+        [closureLabel1, closureImage1, closureImage2, closureButton1, closureButton2, closureButton3, closureButton4].forEach(contentView.addSubview)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -141,22 +158,32 @@ class ViewController: UIViewController {
 
             closureButton3.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             closureButton3.topAnchor.constraint(equalTo: closureButton2.bottomAnchor, constant: 20),
-            closureButton3.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
+            
+            closureButton4.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            closureButton4.topAnchor.constraint(equalTo: closureButton3.bottomAnchor, constant: 20),
+            closureButton4.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
     }
 
-    func tableView() {
+    private func tableView() {
         self.present(TableView(), animated: true)
     }
     
-    func collectionView() {
+    private func collectionView() {
         self.present(CollectionView(), animated: true)
+    }
+    
+    private func navegarXibModal() {
+        let viewControllerXib = ViewControllerXib(nibName: "ViewControllerXib", bundle: nil)
+        self.present(viewControllerXib, animated: true)
     }
     
    @objc
     private func viewXib() {
         self.navigationController?.pushViewController(ViewControllerXib(), animated: true)
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         print("2")

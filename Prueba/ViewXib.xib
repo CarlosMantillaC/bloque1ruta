@@ -28,7 +28,7 @@
                 <constraint firstItem="dFg-fI-Frc" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="EF1-6Z-CI4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="15.267175572519083" y="128.16901408450704"/>
+            <point key="canvasLocation" x="96" y="140"/>
         </view>
     </objects>
     <resources>
