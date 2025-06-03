@@ -13,15 +13,23 @@ class TableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let title: String
         let imageName: String
     }
-    
-    let devices = [
-        Device(title: "Laptop", imageName: "laptopcomputer"),
-        Device(title: "Mac mini", imageName: "macmini"),
-        Device(title: "Mac Pro", imageName: "macpro.gen3"),
-        Device(title: "Pantallas", imageName: "display.2"),
-        Device(title: "Apple TV", imageName: "appletv")
+
+    let secciones = ["Computadores", "Otros"]
+
+    let devices: [[Device]] = [
+        
+        [
+            Device(title: "Laptop", imageName: "laptopcomputer"),
+            Device(title: "Mac mini", imageName: "macmini"),
+            Device(title: "Mac Pro", imageName: "macpro.gen3")
+        ],
+        
+        [
+            Device(title: "Pantallas", imageName: "display.2"),
+            Device(title: "Apple TV", imageName: "appletv")
+        ]
+        
     ]
-    
     
     let closureTable1: UITableView = {
         let table = UITableView()
@@ -52,16 +60,26 @@ class TableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        secciones.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        secciones[section]
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        devices.count
+        devices[section].count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let model = devices[indexPath.row]
-        
+        let model = devices[indexPath.section][indexPath.row]
+
         var listContentConfiguration = UIListContentConfiguration.cell()
         listContentConfiguration.text = model.title
         listContentConfiguration.image = UIImage(systemName: model.imageName)
@@ -73,8 +91,7 @@ class TableView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Seleccionaste a: \(devices[indexPath.row])")
+        let model = devices[indexPath.section][indexPath.row]
+        print("\(model.title)")
     }
-    
-    
 }

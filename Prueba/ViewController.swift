@@ -73,9 +73,8 @@ class ViewController: UIViewController {
         configuration.buttonSize = .large
 
         
-        let button3 = UIButton(type: .system)
+        let button3 = UIButton(type: .system, primaryAction: UIAction(handler: { _ in self.viewXib() }))
         button3.configuration = configuration
-        button3.addTarget(self, action: #selector(viewXib), for: .touchUpInside)
         button3.translatesAutoresizingMaskIntoConstraints = false
         
         return button3
@@ -102,10 +101,12 @@ class ViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        print("1")
         super.viewDidLoad()
+        print("1")
         
-       self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(viewXib))
+        view.backgroundColor = .white
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(viewXib))
         
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false

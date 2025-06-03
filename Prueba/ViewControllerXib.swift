@@ -9,6 +9,11 @@ import UIKit
 
 class ViewControllerXib: UIViewController {
 
+    
+    @IBAction func irAMain(_ sender: Any) {
+        navigationController?.pushViewController(ViewController(), animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
